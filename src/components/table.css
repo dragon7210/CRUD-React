@@ -1,0 +1,16 @@
+h1{
+  text-align: center;
+}
+Button{
+  margin: 10px;
+}
+.header{
+  display: flex;
+  margin-bottom: 10px;
+}
+.add{
+  margin-left: 40px !important;
+}
+.search{
+  margin-left: 50% !important;
+}
