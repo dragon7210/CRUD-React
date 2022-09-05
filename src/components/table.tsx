@@ -8,13 +8,18 @@ import "./table.css";
 import { AddModal } from "./modals/addModal";
 import { EditModal } from "./modals/editModal";
 import { DelModal } from "./modals/delModal";
+import { AddTypeModal } from "./modals/addTypeModal";
 
 export default function DataGridDemo() {
   const [addOpen, setAddOpen] = useState(false);
+  const [addTypeOpen, setAddTypeOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const handleAddOpen = () => {
     setAddOpen(true);
+  };
+  const handleAddTypeOpen = () => {
+    setAddTypeOpen(true);
   };
   const handleEditOpen = () => {
     setEditOpen(true);
@@ -87,7 +92,19 @@ export default function DataGridDemo() {
         >
           ADD
         </Button>
+        <Button
+          className="add"
+          size="small"
+          variant="contained"
+          onClick={handleAddTypeOpen}
+        >
+          ADD Type
+        </Button>
         <AddModal open={addOpen} closeHandle={() => setAddOpen(false)} />
+        <AddTypeModal
+          open={addTypeOpen}
+          closeHandle={() => setAddTypeOpen(false)}
+        />
         <EditModal open={editOpen} closeHandle={() => setEditOpen(false)} />
         <DelModal open={deleteOpen} closeHandle={() => setDeleteOpen(false)} />
         <TextField
