@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { Box, Button, TextField } from "@mui/material";
-import { DataGrid, GridNoRowsOverlay } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import InputData from "../data/inputData";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
