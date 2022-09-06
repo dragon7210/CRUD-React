@@ -7,10 +7,20 @@ import { Button } from "@mui/material";
 type Props = {
   open: boolean;
   closeHandle: () => void;
+  handleDataDel: (val: any) => void;
+  data: any;
 };
 
-export const DelModal: React.FC<Props> = ({ open, closeHandle }) => {
-  const onDelete = () => {};
+export const DelModal: React.FC<Props> = ({
+  open,
+  data,
+  closeHandle,
+  handleDataDel,
+}) => {
+  const onDelete = () => {
+    handleDataDel(data);
+    closeHandle();
+  };
 
   return (
     <Dialog open={open} onClose={closeHandle}>

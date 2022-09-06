@@ -3,14 +3,27 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button, TextField } from "@mui/material";
+import { useState } from "react";
 
 type Props = {
   open: boolean;
   closeHandle: () => void;
+  handleDataAdd: (name: string, fiscal: number, type: string) => void;
 };
 
-export const AddModal: React.FC<Props> = ({ open, closeHandle }) => {
-  const onSave = () => {};
+export const AddModal: React.FC<Props> = ({
+  open,
+  closeHandle,
+  handleDataAdd,
+}) => {
+  const [name, setName] = useState<string>("");
+  const [fiscal, setFiscal] = useState<number>(0);
+  const [type, setType] = useState<string>("");
+
+  const onSave = () => {
+    handleDataAdd(name, fiscal, type);
+    closeHandle();
+  };
 
   return (
     <Dialog open={open} onClose={closeHandle}>
@@ -24,6 +37,7 @@ export const AddModal: React.FC<Props> = ({ open, closeHandle }) => {
           fullWidth
           variant="standard"
           size="small"
+          onChange={(e) => setName(e.target.value)}
         />
         <TextField
           autoFocus
@@ -33,6 +47,7 @@ export const AddModal: React.FC<Props> = ({ open, closeHandle }) => {
           fullWidth
           variant="standard"
           size="small"
+          onChange={(e) => setFiscal(parseInt(e.target.value))}
         />
         <TextField
           autoFocus
@@ -42,6 +57,7 @@ export const AddModal: React.FC<Props> = ({ open, closeHandle }) => {
           fullWidth
           variant="standard"
           size="small"
+          onChange={(e) => setType(e.target.value)}
         />
       </DialogContent>
       <DialogActions>
