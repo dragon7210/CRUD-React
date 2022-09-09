@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import InputData from "../data/inputData";
@@ -41,6 +41,21 @@ export default function DataGridDemo() {
     fiscal: 0,
     type: "",
   });
+  const [search, setSearch] = useState("");
+
+  const onChange = (e: any) => {
+    setSearch(e.target.value);
+  };
+
+  const searchRows = useCallback(
+    (rowsVal: any[]) => {
+      const temp = rowsVal.filter((row: any) =>
+        row.name.toLowerCase().includes(search.toLowerCase())
+      );
+      return temp;
+    },
+    [search]
+  );
 
   const handleAddOpen = () => {
     setAddOpen(true);
@@ -88,7 +103,6 @@ export default function DataGridDemo() {
 
     setRows(newRows);
   };
-
   const columns = useMemo(
     () => [
       { field: "id", headerName: "ID", width: 90 },
@@ -205,11 +219,13 @@ export default function DataGridDemo() {
           label="Search"
           variant="filled"
           size="small"
+          name="search"
+          onChange={onChange}
         />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
-          rows={rows}
+          rows={searchRows(rows)}
           columns={columns}
           pageSize={5}
           checkboxSelection
